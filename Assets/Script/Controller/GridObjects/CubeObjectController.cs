@@ -6,7 +6,6 @@ public class CubeObjectController : BaseGridObjectController
 
     public override bool Interact()
     {
-        // return GameController.Instance.BoardController.TryDestroyConnectedObjectsAtPosition(Data.Position);
         if (Data.Position.y<4)
         {
             GameController.Instance.BoardController.TryAddDefenceItem(Data.Position, Data);

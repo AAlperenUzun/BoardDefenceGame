@@ -21,34 +21,28 @@ public class DefenceItemController : BaseGridObjectController
 
     public void Attack()
     {
+        for (int i = 1; i <= DefenceItem.range; i++)
+        {
+            var pos = new Vector2Int(Data.Position.x,
+                Data.Position.y + i);
+            GameController.Instance.BoardController.AttackToEnemy(pos, DefenceItem.damage);
+        }
 
-        // if (_defenceItem.direction==DefenceItem.Direction.Forward)
-        // {
-            for (int i = 1; i <= DefenceItem.range; i++)
-            {
-                var pos = new Vector2Int(Data.Position.x,
-                    Data.Position.y + i);
-                GameController.Instance.PlayAttackEffect(pos);
-                GameController.Instance.BoardController.AttackToEnemy(pos, DefenceItem.damage);
-            }
-        //     // StartFalling(Data.Position);
-        // }else
         if (DefenceItem.direction == DefenceItem.Direction.All)
         {
             for (int i = 1; i <= DefenceItem.range; i++)
             {
-                var pos = new Vector2Int(Data.Position.x-i,
+                var pos = new Vector2Int(Data.Position.x - i,
                     Data.Position.y);
-                GameController.Instance.PlayAttackEffect(pos);
                 GameController.Instance.BoardController.AttackToEnemy(pos, DefenceItem.damage);
-            }        
+            }
+
             for (int i = 1; i <= DefenceItem.range; i++)
             {
-                var pos = new Vector2Int(Data.Position.x+i,
+                var pos = new Vector2Int(Data.Position.x + i,
                     Data.Position.y);
-                GameController.Instance.PlayAttackEffect(pos);
                 GameController.Instance.BoardController.AttackToEnemy(pos, DefenceItem.damage);
-            }    
+            }
         }
     }
     protected override void FallCompleted()

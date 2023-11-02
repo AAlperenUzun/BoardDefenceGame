@@ -7,11 +7,8 @@ public class LevelDataEditor : Editor
 {
     private LevelData _levelData;
 
-    private static Dictionary<string, Texture2D> _icons = new Dictionary<string, Texture2D>();
-
     private void OnEnable()
     {
-        _icons.Clear();
         _levelData = (LevelData)target;
     }
 
@@ -68,11 +65,6 @@ public class LevelDataEditor : Editor
                         typeContainer.GridCubeType = GridCubeType.Invalid;
 
                     _levelData.StartObjectTypes[index] = typeContainer;
-
-                    Texture2D icon = GetIconForGridObjectType(typeContainer.GridObjectType,
-                        typeContainer.GridCubeType);
-                    GUILayout.Label(icon, GUILayout.Width(80), GUILayout.Height(80));
-
                     GUILayout.EndVertical();
                 }
             }
@@ -85,29 +77,5 @@ public class LevelDataEditor : Editor
         serializedObject.ApplyModifiedProperties();
     }
 
-    private Texture2D GetIconForGridObjectType(GridObjectType objectType, GridCubeType cubeType)
-    {
-        if (objectType == GridObjectType.Invalid)
-            return null;
 
-        if (objectType == GridObjectType.Cube && cubeType == GridCubeType.Invalid)
-            return null;
-
-        string iconPath = "Assets/Textures/GridObjects/";
-
-        iconPath += objectType.ToString();
-
-        if (objectType == GridObjectType.Cube && cubeType != GridCubeType.Invalid)
-            iconPath += cubeType + ".png";
-        else
-            iconPath += ".png";
-
-        if (_icons.TryGetValue(iconPath, out Texture2D icon))
-            return icon;
-
-        icon = AssetDatabase.LoadAssetAtPath<Texture2D>(iconPath);
-        _icons.Add(iconPath, icon);
-
-        return icon;
-    }
 }

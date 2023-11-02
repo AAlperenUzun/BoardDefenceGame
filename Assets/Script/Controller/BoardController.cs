@@ -21,12 +21,11 @@ public class BoardController
     [NonSerialized] public List<InventoryItem> InventoryItems = new List<InventoryItem>();
     // private List<GridDefenceItemType> _waitingDefenceItems=new List<GridDefenceItemType>();
     [NonSerialized]
-    public List<EnemyObjectController> _createdEnemies=new List<EnemyObjectController>();
+    public List<EnemyObjectController> CreatedEnemies=new List<EnemyObjectController>();
     
-    public List<DefenceItemController> _createdDefenceItems=new List<DefenceItemController>();
+    public List<DefenceItemController> CreatedDefenceItems=new List<DefenceItemController>();
     public Grid Grid { get; private set; }
     public bool IsLocked { get; private set; }
-    public float blockTime=3f;
 
     public BoardController(InputController inputController, LevelData levelData)
     {
@@ -59,20 +58,20 @@ public class BoardController
     public void Update(float deltaTime)
     {
         Grid.Update(deltaTime);
-        foreach (var enemy in _createdEnemies)
+        foreach (var enemy in CreatedEnemies)
         {
-            enemy.currentBlockTime+= enemy._enemy.speed* deltaTime;
-            if (blockTime<=enemy.currentBlockTime)
+            enemy.CurrentBlockTime+= enemy.Enemy.speed* deltaTime;
+            if (GameController.Instance.blockTime<=enemy.CurrentBlockTime)
             {
-                enemy.currentBlockTime = 0;
+                enemy.CurrentBlockTime = 0;
                 enemy.StartFall();
             }
         }
 
-        foreach (var defenceItem in _createdDefenceItems)
+        foreach (var defenceItem in CreatedDefenceItems)
         {
             defenceItem.CurrentIntervalTime += defenceItem.DefenceItem.interval * deltaTime;
-            if (blockTime<=defenceItem.CurrentIntervalTime)
+            if (GameController.Instance.blockTime<=defenceItem.CurrentIntervalTime)
             {
                 defenceItem.CurrentIntervalTime = 0;
                 defenceItem.Attack();
@@ -168,7 +167,7 @@ public class BoardController
 
         GridObjectDestroyed?.Invoke(controller.InstanceId);
         var enemyC = (EnemyObjectController)_factory.Create(objectData, _instanceIdProvider);
-        _createdEnemies.Add(enemyC);
+        CreatedEnemies.Add(enemyC);
         enemyC.Initialize();
         AddGridObject(enemyC);
 
@@ -199,7 +198,7 @@ public class BoardController
         InventoryItems.RemoveAt(0);
         createdI.DestroySelf();
         AddGridObject(defenceI);
-        _createdDefenceItems.Add(defenceI);
+        CreatedDefenceItems.Add(defenceI);
 
         return true;
     }
@@ -220,6 +219,7 @@ public class BoardController
     }
     public bool AttackToEnemy(Vector2Int position, float damage)
     {
+        GameController.Instance.PlayAttackEffect(position);
         if (!Grid.TryGetGridObject(position.x, position.y, out BaseGridObjectController controller))
         {
             return false;
@@ -232,7 +232,7 @@ public class BoardController
         var isDead=enemyC.TakeDamage(damage);
         if (isDead)
         {
-            _createdEnemies.Remove((EnemyObjectController)controller);
+            CreatedEnemies.Remove((EnemyObjectController)controller);
             Grid.SetGridObject(null, position.x, position.y);
             GridObjectDestroyed?.Invoke(controller.InstanceId);
             
@@ -247,7 +247,7 @@ public class BoardController
             {
                 UpdateAndFall(new List<Vector2Int>() { position},GridEnemyType.Invalid);
             }
-            if (_createdEnemies.Count<=0 && _waitingEnemies.Count<=0)
+            if (CreatedEnemies.Count<=0 && _waitingEnemies.Count<=0)
             {
                 GameController.Instance.EndLevel(true);
             }
@@ -299,7 +299,7 @@ public class BoardController
             {
                 var enemyController=((EnemyObjectController)cubeController);
                 enemyController.Initialize();
-                _createdEnemies.Add(enemyController);
+                CreatedEnemies.Add(enemyController);
             }
 
             GridObjectFalling?.Invoke(cubeController.InstanceId, newPosition);

@@ -21,7 +21,7 @@ public class GameController : SingletonBehaviour<GameController>
     public DefenceItemData defenceItemData;
     public EnemyData enemyData;
     public GameObject starEffect;
-
+    public float blockTime=3f;
     protected override void OnAwake()
     {
         Initialize();

@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Reflection;
 using UnityEngine;
@@ -7,15 +8,15 @@ public class EnemyObjectController : BaseGridObjectController
     public EnemyObjectController(GridObjectData data, GridObjectInstanceId instanceId) : base(data, instanceId)
     {
     }
-    public Enemy _enemy=new Enemy();
-    public float currentBlockTime;
+    public Enemy Enemy=new Enemy();
+    [NonSerialized]public float CurrentBlockTime;
     
     public void Initialize()
     {
         EnemyData enemyData = GameController.Instance.enemyData;
         Enemy originalEnemy =
             enemyData.enemies.FirstOrDefault(item => item.enemyType == Data.TypeContainer.GridEnemyType);
-        _enemy = CopyEnemy(originalEnemy);
+        Enemy = CopyEnemy(originalEnemy);
     }
     public Enemy CopyEnemy(Enemy originalEnemy)
     {
@@ -42,10 +43,10 @@ public class EnemyObjectController : BaseGridObjectController
 
     public bool TakeDamage(float damage)
     {
-        Debug.Log("health"+_enemy.health+ "damage:"+damage);
-        _enemy.health -= damage;
+        Debug.Log("health"+Enemy.health+ "damage:"+damage);
+        Enemy.health -= damage;
      
-        if (_enemy.health<1)
+        if (Enemy.health<1)
         {
             return true;
         }
