@@ -1,0 +1,214 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d22e855cb204c71b3b09ce2f0ad0df5, type: 3}
+  m_Name: Level2
+  m_EditorClassIdentifier: 
+  _gridSize: {x: 9, y: 9}
+  _allowedGridObjectTypes:
+    _serializedList:
+    - Key: 1
+      Value: 5
+    - Key: 2
+      Value: 1
+    - Key: 3
+      Value: 1
+  _allowedCubeTypes:
+    _serializedList:
+    - Key: 4
+      Value: 1
+    - Key: 5
+      Value: 1
+    - Key: 1
+      Value: 2
+    - Key: 2
+      Value: 1
+    - Key: 3
+      Value: 2
+  _moveCount: 20
+  _goals:
+  - _randomize: 0
+    _randomCountRange: {x: 5, y: 15}
+    _typeContainer:
+      GridObjectType: 1
+      GridCubeType: 1
+    _count: 18
+  - _randomize: 0
+    _randomCountRange: {x: 0, y: 0}
+    _typeContainer:
+      GridObjectType: 1
+      GridCubeType: 3
+    _count: 18
+  _startObjectTypes:
+  - GridObjectType: 1
+    GridCubeType: 1
+  - GridObjectType: 2
+    GridCubeType: 0
+  - GridObjectType: 1
+    GridCubeType: 1
+  - GridObjectType: 1
+    GridCubeType: 3
+  - GridObjectType: 1
+    GridCubeType: 1
+  - GridObjectType: 1
+    GridCubeType: 5
+  - GridObjectType: 1
+    GridCubeType: 5
+  - GridObjectType: 1
+    GridCubeType: 5
+  - GridObjectType: 1
+    GridCubeType: 1
+  - GridObjectType: 1
+    GridCubeType: 2
+  - GridObjectType: 2
+    GridCubeType: 0
+  - GridObjectType: 1
+    GridCubeType: 4
+  - GridObjectType: 1
+    GridCubeType: 3
+  - GridObjectType: 1
+    GridCubeType: 2
+  - GridObjectType: 3
+    GridCubeType: 0
+  - GridObjectType: 1
+    GridCubeType: 2
+  - GridObjectType: 3
+    GridCubeType: 0
+  - GridObjectType: 1
+    GridCubeType: 1
+  - GridObjectType: 1
+    GridCubeType: 1
+  - GridObjectType: 1
+    GridCubeType: 4
+  - GridObjectType: 1
+    GridCubeType: 1
+  - GridObjectType: 1
+    GridCubeType: 4
+  - GridObjectType: 1
+    GridCubeType: 4
+  - GridObjectType: 1
+    GridCubeType: 2
+  - GridObjectType: 1
+    GridCubeType: 5
+  - GridObjectType: 3
+    GridCubeType: 0
+  - GridObjectType: 1
+    GridCubeType: 3
+  - GridObjectType: 1
+    GridCubeType: 1
+  - GridObjectType: 3
+    GridCubeType: 0
+  - GridObjectType: 1
+    GridCubeType: 5
+  - GridObjectType: 1
+    GridCubeType: 3
+  - GridObjectType: 1
+    GridCubeType: 3
+  - GridObjectType: 2
+    GridCubeType: 0
+  - GridObjectType: 2
+    GridCubeType: 0
+  - GridObjectType: 1
+    GridCubeType: 4
+  - GridObjectType: 1
+    GridCubeType: 4
+  - GridObjectType: 3
+    GridCubeType: 0
+  - GridObjectType: 1
+    GridCubeType: 3
+  - GridObjectType: 2
+    GridCubeType: 0
+  - GridObjectType: 1
+    GridCubeType: 4
+  - GridObjectType: 1
+    GridCubeType: 5
+  - GridObjectType: 1
+    GridCubeType: 1
+  - GridObjectType: 3
+    GridCubeType: 0
+  - GridObjectType: 1
+    GridCubeType: 1
+  - GridObjectType: 1
+    GridCubeType: 1
+  - GridObjectType: 1
+    GridCubeType: 5
+  - GridObjectType: 2
+    GridCubeType: 0
+  - GridObjectType: 2
+    GridCubeType: 0
+  - GridObjectType: 1
+    GridCubeType: 2
+  - GridObjectType: 1
+    GridCubeType: 4
+  - GridObjectType: 1
+    GridCubeType: 4
+  - GridObjectType: 1
+    GridCubeType: 4
+  - GridObjectType: 1
+    GridCubeType: 5
+  - GridObjectType: 1
+    GridCubeType: 1
+  - GridObjectType: 1
+    GridCubeType: 3
+  - GridObjectType: 3
+    GridCubeType: 0
+  - GridObjectType: 1
+    GridCubeType: 4
+  - GridObjectType: 1
+    GridCubeType: 1
+  - GridObjectType: 1
+    GridCubeType: 2
+  - GridObjectType: 3
+    GridCubeType: 0
+  - GridObjectType: 1
+    GridCubeType: 5
+  - GridObjectType: 1
+    GridCubeType: 2
+  - GridObjectType: 1
+    GridCubeType: 1
+  - GridObjectType: 1
+    GridCubeType: 2
+  - GridObjectType: 1
+    GridCubeType: 3
+  - GridObjectType: 1
+    GridCubeType: 3
+  - GridObjectType: 1
+    GridCubeType: 1
+  - GridObjectType: 1
+    GridCubeType: 3
+  - GridObjectType: 2
+    GridCubeType: 0
+  - GridObjectType: 2
+    GridCubeType: 0
+  - GridObjectType: 2
+    GridCubeType: 0
+  - GridObjectType: 1
+    GridCubeType: 1
+  - GridObjectType: 2
+    GridCubeType: 0
+  - GridObjectType: 1
+    GridCubeType: 4
+  - GridObjectType: 1
+    GridCubeType: 1
+  - GridObjectType: 1
+    GridCubeType: 3
+  - GridObjectType: 1
+    GridCubeType: 3
+  - GridObjectType: 1
+    GridCubeType: 5
+  - GridObjectType: 1
+    GridCubeType: 3
+  - GridObjectType: 1
+    GridCubeType: 3
+  - GridObjectType: 1
+    GridCubeType: 4
+  _totalGridObjectWeight: 7
+  _totalGridCubeWeight: 7
