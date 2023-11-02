@@ -12,133 +12,161 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d22e855cb204c71b3b09ce2f0ad0df5, type: 3}
   m_Name: Level3
   m_EditorClassIdentifier: 
-  _gridSize: {x: 7, y: 7}
+  _gridSize: {x: 4, y: 8}
+  _interactableGridSize: {x: 4, y: 4}
   _allowedGridObjectTypes:
     _serializedList:
     - Key: 1
       Value: 5
-    - Key: 2
-      Value: 1
   _allowedCubeTypes:
     _serializedList:
-    - Key: 2
-      Value: 1
-    - Key: 5
-      Value: 2
     - Key: 1
       Value: 1
+  _allowedDefenceItemTypes:
+    _serializedList:
+    - Key: 1
+      Value: 5
+    - Key: 2
+      Value: 7
+    - Key: 3
+      Value: 5
+  _allowedEnemyTypes:
+    _serializedList:
+    - Key: 1
+      Value: 7
+    - Key: 2
+      Value: 3
+    - Key: 3
+      Value: 5
   _moveCount: 15
-  _goals:
-  - _randomize: 0
-    _randomCountRange: {x: 5, y: 15}
-    _typeContainer:
-      GridObjectType: 2
-      GridCubeType: 0
-    _count: 40
-  - _randomize: 0
-    _randomCountRange: {x: 0, y: 0}
-    _typeContainer:
-      GridObjectType: 1
-      GridCubeType: 5
-    _count: 15
   _startObjectTypes:
-  - GridObjectType: 2
-    GridCubeType: 0
-  - GridObjectType: 2
-    GridCubeType: 0
-  - GridObjectType: 2
-    GridCubeType: 0
-  - GridObjectType: 2
-    GridCubeType: 0
-  - GridObjectType: 2
-    GridCubeType: 0
-  - GridObjectType: 2
-    GridCubeType: 0
-  - GridObjectType: 2
-    GridCubeType: 0
-  - GridObjectType: 2
-    GridCubeType: 0
-  - GridObjectType: 2
-    GridCubeType: 0
-  - GridObjectType: 2
-    GridCubeType: 0
-  - GridObjectType: 2
-    GridCubeType: 0
-  - GridObjectType: 2
-    GridCubeType: 0
-  - GridObjectType: 2
-    GridCubeType: 0
-  - GridObjectType: 2
-    GridCubeType: 0
-  - GridObjectType: 2
-    GridCubeType: 0
-  - GridObjectType: 2
-    GridCubeType: 0
-  - GridObjectType: 1
-    GridCubeType: 5
-  - GridObjectType: 1
-    GridCubeType: 5
-  - GridObjectType: 1
-    GridCubeType: 5
-  - GridObjectType: 2
-    GridCubeType: 0
-  - GridObjectType: 2
-    GridCubeType: 0
-  - GridObjectType: 2
-    GridCubeType: 0
-  - GridObjectType: 2
-    GridCubeType: 0
-  - GridObjectType: 1
-    GridCubeType: 5
   - GridObjectType: 1
     GridCubeType: 1
+    GridDefenceItemType: 0
+    GridEnemyType: 0
   - GridObjectType: 1
-    GridCubeType: 5
-  - GridObjectType: 2
-    GridCubeType: 0
-  - GridObjectType: 2
-    GridCubeType: 0
-  - GridObjectType: 2
-    GridCubeType: 0
-  - GridObjectType: 2
-    GridCubeType: 0
+    GridCubeType: 1
+    GridDefenceItemType: 0
+    GridEnemyType: 0
   - GridObjectType: 1
-    GridCubeType: 5
+    GridCubeType: 1
+    GridDefenceItemType: 0
+    GridEnemyType: 0
   - GridObjectType: 1
-    GridCubeType: 5
+    GridCubeType: 1
+    GridDefenceItemType: 0
+    GridEnemyType: 0
   - GridObjectType: 1
-    GridCubeType: 5
-  - GridObjectType: 2
-    GridCubeType: 0
-  - GridObjectType: 2
-    GridCubeType: 0
-  - GridObjectType: 2
-    GridCubeType: 0
-  - GridObjectType: 2
-    GridCubeType: 0
-  - GridObjectType: 2
-    GridCubeType: 0
-  - GridObjectType: 2
-    GridCubeType: 0
-  - GridObjectType: 2
-    GridCubeType: 0
-  - GridObjectType: 2
-    GridCubeType: 0
-  - GridObjectType: 2
-    GridCubeType: 0
-  - GridObjectType: 2
-    GridCubeType: 0
-  - GridObjectType: 2
-    GridCubeType: 0
-  - GridObjectType: 2
-    GridCubeType: 0
-  - GridObjectType: 2
-    GridCubeType: 0
-  - GridObjectType: 2
-    GridCubeType: 0
-  - GridObjectType: 2
-    GridCubeType: 0
-  - GridObjectType: 2
-    GridCubeType: 0
-  _totalGridObjectWeight: 6
-  _totalGridCubeWeight: 4
+    GridCubeType: 1
+    GridDefenceItemType: 0
+    GridEnemyType: 0
+  - GridObjectType: 1
+    GridCubeType: 1
+    GridDefenceItemType: 0
+    GridEnemyType: 0
+  - GridObjectType: 1
+    GridCubeType: 1
+    GridDefenceItemType: 0
+    GridEnemyType: 0
+  - GridObjectType: 1
+    GridCubeType: 1
+    GridDefenceItemType: 0
+    GridEnemyType: 0
+  - GridObjectType: 1
+    GridCubeType: 1
+    GridDefenceItemType: 0
+    GridEnemyType: 0
+  - GridObjectType: 1
+    GridCubeType: 1
+    GridDefenceItemType: 0
+    GridEnemyType: 0
+  - GridObjectType: 1
+    GridCubeType: 1
+    GridDefenceItemType: 0
+    GridEnemyType: 0
+  - GridObjectType: 1
+    GridCubeType: 1
+    GridDefenceItemType: 0
+    GridEnemyType: 0
+  - GridObjectType: 1
+    GridCubeType: 1
+    GridDefenceItemType: 0
+    GridEnemyType: 0
+  - GridObjectType: 1
+    GridCubeType: 1
+    GridDefenceItemType: 0
+    GridEnemyType: 0
+  - GridObjectType: 1
+    GridCubeType: 1
+    GridDefenceItemType: 0
+    GridEnemyType: 0
+  - GridObjectType: 1
+    GridCubeType: 1
+    GridDefenceItemType: 0
+    GridEnemyType: 0
+  - GridObjectType: 1
+    GridCubeType: 1
+    GridDefenceItemType: 0
+    GridEnemyType: 0
+  - GridObjectType: 1
+    GridCubeType: 1
+    GridDefenceItemType: 0
+    GridEnemyType: 0
+  - GridObjectType: 1
+    GridCubeType: 1
+    GridDefenceItemType: 0
+    GridEnemyType: 0
+  - GridObjectType: 1
+    GridCubeType: 1
+    GridDefenceItemType: 0
+    GridEnemyType: 0
+  - GridObjectType: 1
+    GridCubeType: 1
+    GridDefenceItemType: 0
+    GridEnemyType: 0
+  - GridObjectType: 1
+    GridCubeType: 1
+    GridDefenceItemType: 0
+    GridEnemyType: 0
+  - GridObjectType: 1
+    GridCubeType: 1
+    GridDefenceItemType: 0
+    GridEnemyType: 0
+  - GridObjectType: 1
+    GridCubeType: 1
+    GridDefenceItemType: 0
+    GridEnemyType: 0
+  - GridObjectType: 1
+    GridCubeType: 1
+    GridDefenceItemType: 0
+    GridEnemyType: 0
+  - GridObjectType: 1
+    GridCubeType: 1
+    GridDefenceItemType: 0
+    GridEnemyType: 0
+  - GridObjectType: 1
+    GridCubeType: 1
+    GridDefenceItemType: 0
+    GridEnemyType: 0
+  - GridObjectType: 1
+    GridCubeType: 1
+    GridDefenceItemType: 0
+    GridEnemyType: 0
+  - GridObjectType: 1
+    GridCubeType: 1
+    GridDefenceItemType: 0
+    GridEnemyType: 0
+  - GridObjectType: 1
+    GridCubeType: 1
+    GridDefenceItemType: 0
+    GridEnemyType: 0
+  - GridObjectType: 1
+    GridCubeType: 1
+    GridDefenceItemType: 0
+    GridEnemyType: 0
+  - GridObjectType: 1
+    GridCubeType: 1
+    GridDefenceItemType: 0
+    GridEnemyType: 0
+  _totalGridObjectWeight: 5
+  _totalGridCubeWeight: 1

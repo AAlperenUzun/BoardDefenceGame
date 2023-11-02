@@ -183,7 +183,7 @@ public class BoardController
         startObjectType.GridDefenceItemType = createdI._defenceItemType;
         var typeContainer = startObjectType;
         // var typeContainer = GameController.Instance.BoardController._levelData.GetRandomObjectType();
-        objectData = new GridObjectData(position, typeContainer.GridObjectType, typeContainer.GridCubeType, typeContainer.GridDefenceItemType, typeContainer.GridEnemyType, GridObjectState.Idle,
+        objectData = new GridObjectData(position, GridObjectType.DefenceItem, GridCubeType.Invalid, typeContainer.GridDefenceItemType, GridEnemyType.Invalid, GridObjectState.Idle,
             Axis.None);
         if (!Grid.TryGetGridObject(position.x, position.y, out BaseGridObjectController controller))
         {
@@ -195,11 +195,11 @@ public class BoardController
         GridObjectDestroyed?.Invoke(controller.InstanceId);
 
         var defenceI = (DefenceItemController)_factory.Create(objectData, _instanceIdProvider);
-        _createdDefenceItems.Add(defenceI);
+        defenceI.Initialize();
         InventoryItems.RemoveAt(0);
         createdI.DestroySelf();
-        defenceI.Initialize();
         AddGridObject(defenceI);
+        _createdDefenceItems.Add(defenceI);
 
         return true;
     }
@@ -214,7 +214,7 @@ public class BoardController
         GridObjectDestroyed?.Invoke(controller.InstanceId);
 
         if (updateAndFall)
-            UpdateAndFall(new List<Vector2Int>() { position });
+            UpdateAndFall(new List<Vector2Int>() { position }, GridEnemyType.Invalid);
 
         return true;
     }
@@ -236,13 +236,16 @@ public class BoardController
             Grid.SetGridObject(null, position.x, position.y);
             GridObjectDestroyed?.Invoke(controller.InstanceId);
             
-            UpdateAndFall(new List<Vector2Int>() { position });
+         
             if (_waitingEnemies.Count>0)
             {
                 GridObjectData data = new GridObjectData(position, GridObjectType.Enemy, GridCubeType.Invalid, GridDefenceItemType.Invalid, GetRandomEnemy(), GridObjectState.Idle,
                     Axis.None);
-            
-                TryAddEnemy(position, data);
+                UpdateAndFall(new List<Vector2Int>() { position}, data.TypeContainer.GridEnemyType);
+            }
+            else
+            {
+                UpdateAndFall(new List<Vector2Int>() { position},GridEnemyType.Invalid);
             }
             if (_createdEnemies.Count<=0 && _waitingEnemies.Count<=0)
             {
@@ -252,7 +255,7 @@ public class BoardController
         return true;
     }
 
-    private IEnumerator<float> CreateAndFallRoutine(List<Vector2Int> positions)
+    private IEnumerator<float> CreateAndFallRoutine(List<Vector2Int> positions, GridEnemyType enemyType)
     {
         int lastY = positions[0].y;
         Dictionary<int, int> yOffsetsByXPositions = new Dictionary<int, int>();
@@ -278,6 +281,12 @@ public class BoardController
             yOffsetsByXPositions[position.x] = yOffset + 1;
 
             GridObjectTypeContainer typeContainer = _levelData.GetRandomObjectType();
+            if (enemyType!=GridEnemyType.Invalid)
+            {
+                typeContainer.GridObjectType = GridObjectType.Enemy;
+                typeContainer.GridEnemyType = enemyType;
+            }
+
             GridObjectData data = new GridObjectData(startPosition, typeContainer.GridObjectType, typeContainer.GridCubeType, typeContainer.GridDefenceItemType, typeContainer.GridEnemyType, GridObjectState.Idle,
                 Axis.None);
 
@@ -286,11 +295,18 @@ public class BoardController
 
             Grid.SetGridObject(cubeController, newPosition.x, newPosition.y);
             cubeController.StartFalling(newPosition);
+            if (enemyType != GridEnemyType.Invalid)
+            {
+                var enemyController=((EnemyObjectController)cubeController);
+                enemyController.Initialize();
+                _createdEnemies.Add(enemyController);
+            }
+
             GridObjectFalling?.Invoke(cubeController.InstanceId, newPosition);
         }
     }
 
-    public void UpdateAndFall(List<Vector2Int> positions)
+    public void UpdateAndFall(List<Vector2Int> positions, GridEnemyType enemyType)
     {
         Grid.UpdatePositionsToFillSpaces();
 
@@ -300,7 +316,7 @@ public class BoardController
             GridObjectFalling?.Invoke(controller.InstanceId, position);
         }
 
-        Timing.RunCoroutine(CreateAndFallRoutine(positions));
+        Timing.RunCoroutine(CreateAndFallRoutine(positions, enemyType));
     }
 
     private void RegisterListeners()
